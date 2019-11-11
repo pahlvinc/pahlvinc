@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Unity WebGL Player | Sloan CPQ Visualizer</title>
+	<script src="Build/UnityLoader.js"></script>
+	<script>
+	  var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Sloan configurator 10-18.json");
+      var isLoaded = false;
+      var quickChoice = new Array();
+		var savedScreenshot = "";
+		
+		function SetScreenshotData()
+		{
+			gameInstance.SendMessage ("Button Manager","SetScreenshotData");
+			//console.log(savedScreenshot);
+		}
+
+		//function Capture(value)
+		//{
+		//	console.log("Open image");
+		//	var url = 'data:image/jpeg;base64,' + value;
+		//	window.open(url, '_blank');
+		//}
+		
+		function OnClickItem(value)
+		{
+			gameInstance.SendMessage ("Item Controller","OnClickItem", value);
+		}
+		
+		// handles swapping displayed product given a string parameter in the form <sink type, faucet type, material>
+	  function Swap(value)
+	  {
+		gameInstance.SendMessage ("Item Controller","Swap", value);
+	  }
+	  
+	  // handles stretching the left side of the sink
+	  function LeftStretch(value)
+	  {
+		gameInstance.SendMessage ("Item Controller","LeftStretch", value);
+	  }
+	  
+	  // handles stretching the right side of the sink	
+	  function RightStretch(value)
+	  {
+		gameInstance.SendMessage ("Item Controller","RightStretch", value);
+	  }
+	  
+    function firstChoice()
+    {
+        console.log("firstchoice");
+        if(quickChoice.length != 0)
+        {
+            for(var i = 0; i < quickChoice.length; i++)
+            {
+                Swap(quickChoice[i]);
+            }
+        }
+    }
+
+  
+	</script>
+	
+	<style>
+
+	li {
+	  float: left;
+	  padding: 10px 40px;	
+	}
+
+	li a {
+	  display: block;
+	  color: black;
+	  text-align: center;
+	  padding: 48px;
+	  text-decoration: none;
+	}
+
+	li a:hover {
+	  background-color: #ffffff;
+	}
+</style>
+  </head>
+	<header>
+	
+<!–– 
+<form action="#" onsubmit="LeftStretch(leftstretch.value);return false">
+  Left Stretch (cm 0-50):
+  <input type="text" name="leftstretch">
+  <input type="submit">
+</form>
+
+<form action="#" onsubmit="RightStretch(rightstretch.value);return false">
+  Right Stretch (cm 0-50):
+  <input type="text" name="rightstretch">
+  <input type="submit">
+</form>
+-->
+	<ul>
+		<div class="products" onclick="OnClickItem('SinkModel-1')"><a href="#">Sink 1</a></div>
+		<div class="products" onclick="OnClickItem('SinkModel-2')"><a href="#">Sink 2</a></div>
+		<div class="products" onclick="OnClickItem('SinkModel-3')"><a href="#">Sink 3</a></div>
+		<div class="products" onclick="OnClickItem('BasinGrates-1')"><a href="#">Enable Basin Grate</a></div>
+		<div class="products" onclick="OnClickItem('BasinGrates-0')"><a href="#">Disable Basin Grate</a></div>
+		<div class="products" onclick="OnClickItem('MountingType-0')"><a href="#">Enclosure Off</a></div>
+		<div class="products" onclick="OnClickItem('MountingType-1')"><a href="#">Enclosure 1</a></div>
+		<div class="products" onclick="OnClickItem('MountingType-2')"><a href="#">Enclosure 2</a></div>
+		
+		
+		<div class="products" onclick="OnClickItem('BabyChangingStation-1')"><a href="#">Enable Baby Changing Station</a></div>
+		<div class="products" onclick="OnClickItem('BabyChangingStation-0')"><a href="#">Disable Baby Changing Station</a></div>
+
+	</ul>
+	
+		<ul>
+		<div class="products" onclick="OnClickItem('FaucetModel-1')"><a href="#">Faucet 1</a></div>
+		<div class="products" onclick="OnClickItem('FaucetModel-2')"><a href="#">Faucet 2</a></div>
+
+		
+		<div class="products" onclick="OnClickItem('SinkMaterial-1')"><a href="#">Sink Material 1</a></div>
+		<div class="products" onclick="OnClickItem('SinkMaterial-2')"><a href="#">Sink Material 2</a></div>
+		
+		<div class="products" onclick="OnClickItem('FaucetMaterial-1')"><a href="#">Faucet Material 1</a></div>
+		<div class="products" onclick="OnClickItem('FaucetMaterial-2')"><a href="#">Faucet Material 2</a></div>
+
+		
+
+	</ul>
+</header>
+  <body>
+	<div class="webgl-content">
+
+
+
+	
+
+
+
+	<div id="gameContainer" style="width: 960px; height: 600px"></div>
+	  <div class="footer">
+		<div class="title">Sloan CPQ Visualizer</div>
+		
+		
+		<div class="products" onclick="SetScreenshotData()"><a href="#">Set screenshot data</a></div>
+
+	  </div>
+	</div>
+  </body>
+
+</html>

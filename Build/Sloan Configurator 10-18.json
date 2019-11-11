@@ -1,0 +1,13 @@
+{
+"companyName": "DefaultCompany",
+"productName": "Sink-On-A-Wall",
+"dataUrl": "Sloan Configurator 10-18.data.unityweb",
+"wasmCodeUrl": "Sloan Configurator 10-18.wasm.code.unityweb",
+"wasmFrameworkUrl": "Sloan Configurator 10-18.wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"}
+}
